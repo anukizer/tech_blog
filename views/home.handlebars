@@ -1,0 +1,14 @@
+<h1>Welcome to the Tech Blog</h1>
+<section id="posts">
+  {{#if posts.length}}
+    {{#each posts}}
+      <article>
+        <h2><a href="/post/{{this.id}}">{{this.title}}</a></h2>
+        <p>Posted by {{this.user.username}} on {{format_date this.createdAt}} at {{format_time this.createdAt}}</p>
+        <p>{{this.content}}</p>
+      </article>
+    {{/each}}
+  {{else}}
+    <p>No posts yet. Be the first to share your thoughts!</p>
+  {{/if}}
+</section>

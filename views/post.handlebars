@@ -1,0 +1,31 @@
+<article>
+  <h1>{{post.title}}</h1>
+  <p>{{post.content}}</p>
+  <p>Posted by {{post.user.username}} on {{format_date post.createdAt}} at {{format_time post.createdAt}}</p>
+</article>
+
+<section id="comments">
+  <h2>Comments</h2>
+  {{#if post.comments.length}}
+    {{#each post.comments}}
+      <div>
+        <p>{{this.comment_text}}</p>
+        <p>Commented by {{this.user.username}} on {{format_date this.createdAt}} at {{format_time this.createdAt}}</p>
+      </div>
+    {{/each}}
+  {{else}}
+    <p>No comments yet. Be the first to comment!</p>
+  {{/if}}
+</section>
+
+<section id="new-comment">
+  {{#if logged_in}}
+    <form id="comment-form">
+      <textarea name="comment_text" placeholder="Write your comment here..." required></textarea>
+      <button type="submit">Submit</button>
+    </form>
+  {{else}}
+    <p>You must <a href="/login">log in</a> to leave a comment.</p>
+  {{/if}}
+</section>
+<script src="/js/comment.js"></script>
